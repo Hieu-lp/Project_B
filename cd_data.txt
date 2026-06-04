@@ -1,2 +1,3 @@
-CD001|Bên ấy bên này|Long Cao|lãng mạn|2017|20000|20
+CD001|Bên ấy bên này|Long Cao|lãng mạn|2017|20000|10
 CD002|cưới đi|changg|tình carm|202|20000|50
+CD003|CD003|Loc|lãng mạn|2015|100000|200
