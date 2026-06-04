@@ -9,6 +9,27 @@ INVOICE_FILE="invoices.txt"    # InvoiceID|Ngày|TênKH|ID_CD|Tên CD|SL|Đơn g
 [ ! -f "$DETAIL_FILE" ]  && touch "$DETAIL_FILE"
 [ ! -f "$INVOICE_FILE" ] && touch "$INVOICE_FILE"
 
+# Giao diện và thông báo
+line() { printf '%0.s─' {1..60}; echo; }
+double_line() { printf '%0.s═' {1..60}; echo; }
+
+# thêm tí màu sắc 
+#==========================================
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+msg_ok() { echo -e "${GREEN} $1${NC}"; }
+msg_err() { echo -e "${RED} $1${NC}"; }
+msg_info() { echo -e "${CYAN} $1${NC}"; }
+msg_warn() { echo -e "${YELLOW} $1${NC}"; }
+#===========================================
+
 # Sinh id tự động
 sinh_id_cd() {
     if [ ! -s "$CD_FILE" ]; then
@@ -335,9 +356,8 @@ tim_cd_theo_bai_hat() {
         IFS=';' read -r -a songs <<< "$bai_hat_list"
         for song in "${songs[@]}"; do
             song_lc=$(echo "$song" | tr '[:upper:]' '[:lower:]')
-            # Khop theo kieu bat dau bang chuoi can tim
             case "$song_lc" in
-                "$bai_hat_tim_lc"*) match_list+=("$song") ;;
+                *"$bai_hat_tim_lc"*) match_list+=("$song") ;;
             esac
         done
 
